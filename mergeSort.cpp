@@ -40,13 +40,22 @@ void IterativeMergeSort(vector<int>& A, int n){
         Merge(A, 0, p/2-1, n-1);
     }
 }
+
+void recursiveMergeSort(vector<int>& A, int l, int h){
+    if(l<h){
+        int mid = (l+h)/2;
+        recursiveMergeSort(A, l, mid);
+        recursiveMergeSort(A, mid+1, h);
+        Merge(A, l, mid, h);
+    }
+}
  
 int main() {
  
     vector<int> A = {2, 5, 8, 12, 3, 6, 7, 10};
     int n = A.size();
 
-    IterativeMergeSort(A, n);
+    recursiveMergeSort(A, 0, n-1);
 
     for(int val: A){
         cout << val << " ";
